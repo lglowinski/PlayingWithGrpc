@@ -1,0 +1,36 @@
+syntax="proto3";
+
+message GetUserRequest {
+  int32 id = 1;
+}
+
+message DeleteUserRequest {
+  int32 id = 1;
+}
+
+message DeleteUserResponse {
+  bool success = 1;
+}
+
+message User{
+  int32 id = 1;
+  string name = 2;
+  bool is_active = 3;
+  Address address = 4;
+}
+
+message Address{
+  string country = 1;
+  string city = 2;
+  string street = 3;
+  string zip_code = 4;
+  string home = 5;
+  string apartment = 6;
+}
+
+service UserService {
+  rpc GetUser (GetUserRequest) returns (User);
+  rpc CreateUser (User) returns (User);
+  rpc UpdateUser (User) returns (User);
+  rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+}
